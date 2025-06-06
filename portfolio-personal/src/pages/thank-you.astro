@@ -1,0 +1,23 @@
+---
+// src/pages/thank-you.astro
+import DefaultLayout from "../layouts/DefaultLayout.astro";
+---
+
+<DefaultLayout>
+    <section class="text-center space-y-4 py-20">
+        <h1 data-motion="fade-down" data-delay="0.1" class="text-3xl font-bold">
+            ¡Gracias!
+        </h1>
+        <p data-motion="fade-up" data-delay="0.2" class="text-lg">
+            He recibido tu mensaje y pronto te responderé.
+        </p>
+        <a
+            href="/"
+            data-motion="zoom-in"
+            data-delay="0.3"
+            class="inline-block mt-4 px-6 py-2 bg-primary text-white rounded hover:opacity-90 transition"
+        >
+            Volver al inicio
+        </a>
+    </section>
+</DefaultLayout>

@@ -1,0 +1,56 @@
+---
+// src/pages/projects.astro
+import DefaultLayout from "../layouts/DefaultLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+
+const projects = [
+    {
+        title: "TaskFlow",
+        description:
+            "Aplicación tipo Trello con autenticación JWT, arrastrar y soltar y roles.",
+        tech: ["React", "Node.js", "MongoDB", "Tailwind"],
+        image: "",
+        repo: "https://github.com/YasinAHA/taskflow",
+        demo: "https://taskflow-demo.vercel.app",
+        privateProject: false,
+        delay: "0.0",
+    },
+    {
+        title: "Trotalia (Adcore)",
+        description:
+            "Web corporativa de agencia de viajes. Maquetación responsive, integración de buscador y panel de reservas.",
+        tech: ["PHP", "MySQL", "BEMIT"],
+        image: "/images/trotalia-home.png", // captura local
+        repo: "", // privado
+        demo: "", // privado
+        privateProject: true, // flag opcional
+        delay: "0.2",
+    },
+    {
+        title: "Spring & Angular POC",
+        description:
+            "Prototipo inicial para futuras prácticas con Spring Boot y Angular.",
+        tech: ["Spring Boot", "Angular"],
+        image:"",
+        repo: "https://github.com/YasinAHA/spring-angular-poc",
+        privateProject: false,
+        delay: "0.4",
+    },
+];
+---
+
+<DefaultLayout>
+    <section class="space-y-8">
+        <h1
+            data-motion="fade-down"
+            data-delay="0.1"
+            class="text-3xl md:text-4xl font-bold text-center"
+        >
+            Proyectos
+        </h1>
+
+        <div class="grid sm:grid-cols-2 gap-8">
+            {projects.map((p) => <ProjectCard {...p} />)}
+        </div>
+    </section>
+</DefaultLayout>

@@ -1,0 +1,115 @@
+---
+import DefaultLayout from "../layouts/DefaultLayout.astro";
+
+export const title       = "Sobre mí | Yassine Ait El Hadj";
+export const description = "Conoce mi trayectoria, skills y proyectos como desarrollador Full-stack.";
+export const image       = "https://tudominio.com/images/about-og.png";
+
+/** Línea de tiempo – evitamos duplicar HTML  */
+const timeline: {
+  date: string;
+  title: string;
+  desc: string;
+  color?: "primary" | "secondary";
+  icon: "briefcase" | "cap" | "rocket";
+}[] = [
+  {
+    date: "Feb – May 2025",
+    title: "Full-stack Developer (FCT) – Adcore",
+    desc: "Nueva web de Trotalia Viajes (PHP, JS, BEMIT).",
+    icon: "briefcase",
+  },
+  {
+    date: "2024",
+    title: "Desarrollador Junior – Camerfirma",
+    desc:
+      "Backend con PHP y MySQL para servicios de certificación, flujos eIDAS.",
+    icon: "briefcase",
+  },
+  {
+    date: "2023 – 2025",
+    title: "Téc. Sup. DAW",
+    desc: "JavaScript, PHP, Java, SQL y creación de TaskFlow.",
+    icon: "cap",
+  },
+  {
+    date: "2021 – 2023",
+    title: "Téc. Sup. ASIR",
+    desc: "Redes, servidores, bases de datos, fundamentos de programación.",
+    icon: "cap",
+  },
+  {
+    date: "2025 (en curso)",
+    title: "Spring Boot & Angular",
+    desc: "Desarrollo empresarial con Java y frontend avanzado con Angular.",
+    icon: "rocket",
+    color: "secondary",
+  },
+];
+
+const icons = {
+  briefcase: /*html*/ `<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-white" fill="none" viewBox="0 0 24 24"><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2m12 0H4a2 2 0 0 0-2 2v1h20V9a2 2 0 0 0-2-2Zm2 3H2v6a2 2 0 0 0 2 2h5v-2a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2h5a2 2 0 0 0 2-2v-6Z"/></svg>`,
+  cap:       /*html*/ `<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-white" fill="none" viewBox="0 0 24 24"><path d="m12 5 9 4-9 4-9-4 9-4Zm0 14v-6m9-2v5a2 2 0 0 1-2 2h-3.5"/></svg>`,
+  rocket:    /*html*/ `<svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 stroke-white" fill="none" viewBox="0 0 24 24"><path d="m14 4 6 6m-4-8a9 9 0 0 0-9 9v1l-2.5 2.5a1.5 1.5 0 0 0 1.5 2.5h2v2a1.5 1.5 0 0 0 2.5 1.5L14 19h1a9 9 0 0 0 9-9 9 9 0 0 0-9-9Zm0 0a9 9 0 0 0-9 9"/></svg>`,
+};
+---
+<DefaultLayout>
+  <!-- ───── Header personal ───── -->
+  <section class="space-y-8">
+    <h1
+      class="text-3xl md:text-4xl font-bold text-center"
+      data-motion="fade-down"
+      data-delay="0.10">
+      Sobre mí
+    </h1>
+
+    <div
+      class="card-inner flex flex-col md:flex-row items-center gap-6"
+      data-motion="fade-right" data-delay="0.20">
+      <img
+        src="https://avatars.githubusercontent.com/YasinAHA"
+        alt="Foto de Yassine"
+        class="w-32 h-32 rounded-full border-4 border-primary shadow-md"
+        data-motion="zoom-in" data-delay="0.30"/>
+
+      <div class="space-y-4 text-base leading-relaxed">
+        <p data-motion="fade-up" data-delay="0.40">
+          Soy <strong>Yassine Ait El Hadj Ahajtan</strong>, desarrollador Full-stack con
+          formación en <strong>DAW</strong> y <strong>ASIR</strong>. He colaborado en proyectos reales
+          como <em>Trotalia</em> (Adcore) y <em>Camerfirma</em>.
+        </p>
+        <p data-motion="fade-up" data-delay="0.50">
+          Apasionado por crear interfaces modernas y robustas, aplicando buenas prácticas
+          de arquitectura limpia, separación de responsabilidades y diseño accesible.
+        </p>
+        <p data-motion="fade-up" data-delay="0.60">
+          Disfruto tanto del backend como del frontend: <code>React</code>,
+          <code>Node.js</code>, <code>MongoDB</code>, <code>PHP</code>, <code>Java</code>…
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ───── Timeline ───── -->
+  <section class="mt-12 space-y-6">
+    <h2
+      class="text-2xl font-semibold text-center"
+      data-motion="fade-down" data-delay="0.10">
+      Mi trayectoria
+    </h2>
+
+    <ol class="relative pl-9 space-y-8 before:absolute before:left-3 before:top-0 before:h-full before:w-[2px] before:bg-primary">
+      {timeline.map((item, i) => (
+        <li class="relative" data-motion="fade-right" data-delay={`0.${2+i}`}>
+          <span
+            class={`absolute -left-9 top-[1.35rem] w-6 h-6 flex items-center justify-center rounded-full shadow
+                     ${item.color === 'secondary' ? 'bg-secondary' : 'bg-primary'}`}
+            set:html={icons[item.icon]} />
+          <p class="text-sm text-muted dark:text-muted-dark">{item.date}</p>
+          <h3 class="text-lg font-bold">{item.title}</h3>
+          <p class="text-[15px] text-foreground/80 dark:text-foreground-dark/80">{item.desc}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+</DefaultLayout>
