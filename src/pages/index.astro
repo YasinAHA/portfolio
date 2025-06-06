@@ -1,0 +1,56 @@
+---
+import DefaultLayout from "@layouts/DefaultLayout.astro";
+---
+
+<DefaultLayout>
+	<section class="card-flat mx-auto max-w-xl text-center space-y-6">
+		<!-- Hola -->
+		<h1
+			data-motion="fade-down"
+			class="font-bold leading-tight
+             [font-size:clamp(2.25rem,6vw,3.5rem)]"
+		>
+			Hola, soy Yassine
+			<span aria-hidden="true" class="inline-block animate-wiggle"
+				>👋</span
+			>
+		</h1>
+
+		<!-- Sub copy -->
+		<p
+			data-motion="fade-up"
+			data-delay="0.15"
+			class="text-lg md:text-xl text-foreground/80"
+		>
+			Desarrollador&nbsp;Full-stack entusiasta del código limpio y las
+			interfaces modernas.
+		</p>
+
+		<!-- Tech stack -->
+		<div
+			data-motion="fade-up"
+			data-delay="0.25"
+			class="flex flex-wrap gap-2 justify-center text-sm"
+		>
+			<span class="badge tag-primary">PHP</span>
+			<span class="badge tag-primary">Java</span>
+			<span class="badge tag-primary">React</span>
+			<span class="badge tag-primary">Node.js</span>
+			<span class="badge tag-secondary">MongoDB</span>
+			<span class="badge tag-secondary">MySQL</span>
+			<span class="badge tag-secondary">PostgreSQL</span>
+		</div>
+
+		<!-- CTA -->
+		<a
+			href="/projects"
+			title="Ver mista-dyectos"
+			data-motion="zoom-in"
+			data-delay="0.35"
+			class="btn btn-primary inline-flex gap-2"
+		>
+			Ver proyectos
+			
+		</a>
+	</section>
+</DefaultLayout>

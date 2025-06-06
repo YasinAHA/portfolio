@@ -1,0 +1,61 @@
+---
+// src/pages/test-dark.astro
+import TestDarkLayout from "@layouts/TestDarkLayout.astro";
+---
+
+<TestDarkLayout>
+    <main class="min-h-screen flex flex-col items-center justify-center px-6">
+        <h1 class="text-4xl font-bold mb-4">Prueba Dark Mode</h1>
+        <p class="mb-6">El fondo y texto deberían cambiar según el tema.</p>
+        <button
+            id="toggle-theme"
+            class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition"
+        >
+            Toggle Dark/Light
+        </button>
+<!-- -->
+<!-- Pon este HTML en una página (p. ej. src/pages/test-opacity.astro) -->
+<!-- Y asegúrate de que tu tailwind.config.mjs incluya: content: ['./src/**/*.{astro,html,js,jsx,ts,tsx}']  -->
+<!-- -->
+
+<main class="min-h-screen flex items-center justify-center bg-neutral-100 dark:bg-neutral-900 p-8">
+  <div class="grid grid-cols-3 gap-6 w-full max-w-lg">
+    <!-- 100% de opacidad (fondo totalmente opaco) -->
+    <div class="p-6 bg-indigo-600/100 text-white rounded-lg shadow">100%</div>
+
+    <!-- 75% de opacidad -->
+    <div class="p-6 bg-indigo-600/75 text-white rounded-lg shadow">75%</div>
+
+    <!-- 70% de opacidad -->
+    <div class="p-6 bg-indigo-600/70 text-white rounded-lg shadow">70%</div>
+
+    <!-- 50% de opacidad -->
+    <div class="p-6 bg-indigo-600/50 text-white rounded-lg shadow">50%</div>
+
+    <!-- 25% de opacidad -->
+    <div class="p-6 bg-indigo-600/25 text-white rounded-lg shadow">25%</div>
+
+    <!-- 0% de opacidad: solo contorno para que se note la caja -->
+    <div class="p-6 bg-indigo-600/0 text-neutral-900 border border-neutral-500 rounded-lg shadow">0%</div>
+  </div>
+</main>
+
+    </main>
+
+    <script>
+        // Código de toggle con comprobación de null:
+        const btn = document.getElementById("toggle-theme");
+        if (btn) {
+            btn.addEventListener("click", () => {
+                const root = document.documentElement;
+                if (root.classList.contains("dark")) {
+                    root.classList.remove("dark");
+                    localStorage.setItem("theme", "light");
+                } else {
+                    root.classList.add("dark");
+                    localStorage.setItem("theme", "dark");
+                }
+            });
+        }
+    </script>
+</TestDarkLayout>

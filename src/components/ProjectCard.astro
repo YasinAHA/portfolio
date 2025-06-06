@@ -1,0 +1,113 @@
+---
+export interface Props {
+    title: string;
+    description: string;
+    tech: string[];
+    image?: string;
+    repo?: string;
+    demo?: string;
+    privateProject?: boolean;
+    delay?: string;
+}
+const {
+    title,
+    description,
+    tech,
+    image,
+    repo,
+    demo,
+    privateProject = false,
+    delay = "0",
+} = Astro.props;
+---
+
+<article
+    data-motion="fade-up"
+    data-delay={delay}
+    class="rounded-[var(--radius)] bg-white dark:bg-neutral-900 border border-border dark:border-border-dark shadow-sm hover:shadow-xl hover:scale-[1.01] transition-all duration-300 p-6 flex flex-col gap-4"
+>
+    <h3 class="text-xl font-semibold text-foreground dark:text-foreground-dark">
+        {title}
+    </h3>
+
+    <p class="text-sm text-muted dark:text-neutral-300 leading-relaxed">
+        {description}
+    </p>
+
+    <ul class="flex flex-wrap gap-2 text-xs">
+        {
+            tech.map((t) => (
+                <li
+                    class="px-2 py-1 bg-primary/15 text-primary font-medium rounded-full shadow-sm"
+                    aria-label={`Tecnología: ${t}`}
+                >
+                    {t}
+                </li>
+            ))
+        }
+    </ul>
+
+    {
+        image && (
+            <img
+                src={image}
+                alt={`Captura de ${title}`}
+                class="rounded-lg mb-4 border border-border dark:border-border-dark"
+                loading="lazy"
+                decoding="async"
+            />
+        )
+    }
+
+    <div class="mt-4 flex flex-wrap gap-4 text-sm">
+        {
+            repo && (
+                <a
+                    href={repo}
+                    class="flex items-center gap-1 text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Ver código fuente de ${title}`}
+                >
+                    <span>Código</span>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-4 h-4"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                    >
+                        <path d="M12.293 2.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L14 5.414V13a1 1 0 11-2 0V5.414L9.707 7.707a1 1 0 01-1.414-1.414l4-4z" />
+                    </svg>
+                </a>
+            )
+        }
+        {
+            demo && (
+                <a
+                    href={demo}
+                    class="flex items-center gap-1 text-primary underline underline-offset-2 hover:text-primary/80 transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Ver demo de ${title}`}
+                >
+                    <span>Demo</span>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="w-4 h-4"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                    >
+                        <path d="M12.293 2.293a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L14 5.414V13a1 1 0 11-2 0V5.414L9.707 7.707a1 1 0 01-1.414-1.414l4-4z" />
+                    </svg>
+                </a>
+            )
+        }
+        {
+            privateProject && (
+                <p class="text-xs text-neutral-500 italic">
+                    Código y demo privados
+                </p>
+            )
+        }
+    </div>
+</article>

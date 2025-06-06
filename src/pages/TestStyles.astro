@@ -1,0 +1,59 @@
+---
+import DefaultLayout from "@layouts/DefaultLayout.astro";
+export const title = "Test de Estilos";
+---
+
+<DefaultLayout>
+    <section class="space-y-12 container-box">
+        <h1 class="text-3xl font-bold text-center">🎨 Test de Estilos</h1>
+
+        <!-- 🎴 Tarjetas -->
+        <h2 class="text-xl font-semibold">Tarjetas</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="card-flat">.card – Tarjeta básica</div>
+            <div class="card-inner">.card-inner – Neumorphism</div>
+            <div class="card-glass">.card-glass – Glassmorphism</div>
+        </div>
+
+        <!-- 🔘 Botones -->
+        <div class="flex flex-wrap gap-4 items-center justify-center">
+            <button class="btn btn-primary">Primario</button>
+            <button class="btn btn-ghost">Ghost</button>
+            <button class="btn btn-danger">Peligro</button>
+        </div>
+
+        <!-- 💬 Badges y Tags -->
+        <h2 class="text-xl font-semibold">Badges &amp; Tags</h2>
+        <div class="flex gap-3 flex-wrap justify-center">
+            <span class="badge">Badge</span>
+            <span class="badge tag-primary">Tag primary</span>
+            <span class="badge tag-secondary">Tag secondary</span>
+        </div>
+
+        <!-- 📦 Container responsive -->
+        <h2 class="text-xl font-semibold">Contenedor</h2>
+        <div
+            class="container-box bg-surface/40 dark:bg-surface-dark/40 rounded-xl py-6 text-center"
+        >
+            <p class="text-sm">
+                Esto está dentro de <code>.container-box</code>
+            </p>
+        </div>
+
+        <!-- Debug: muestra todas las clases juntas -->
+        <div class="space-y-4">
+            <h2 class="text-xl font-semibold">Debug visual</h2>
+            <div class="card">
+                <p>Combinación rápida de utilidades personalizadas:</p>
+                <div class="flex flex-wrap gap-2 mt-2">
+                    <button class="btn btn-primary">btn-primary</button>
+                    <button class="btn btn-ghost">btn-ghost</button>
+                    <button class="btn btn-danger">btn-danger</button>
+                    <span class="badge">badge</span>
+                    <span class="badge tag-primary">tag-primary</span>
+                    <span class="badge tag-secondary">tag-secondary</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</DefaultLayout>
