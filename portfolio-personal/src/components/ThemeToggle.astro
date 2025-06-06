@@ -1,0 +1,76 @@
+---
+const isDark = false; // SSR safe
+---
+
+<button
+    id="theme-toggle"
+    class="p-2 rounded-full hover:bg-neutral-200/80 dark:hover:bg-neutral-800/80 transition"
+    aria-label="Cambiar tema"
+    aria-pressed="false"
+>
+    <svg
+        id="theme-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-6 h-6 text-neutral-900 dark:text-white transition-transform duration-300 ease-in-out"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+    >
+        <path
+            id="icon-sun"
+            class={isDark ? "hidden" : ""}
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 3v2m0 14v2m9-9h-2M5 12H3m16.364-6.364l-1.414 1.414M6.343 17.657l-1.414 1.414M17.657 17.657l1.414 1.414M6.343 6.343l1.414 1.414M12 8a4 4 0 100 8 4 4 0 000-8z"
+        ></path>
+        <path
+            id="icon-moon"
+            class={isDark ? "" : "hidden"}
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 12.79A9 9 0 1111.21 3a7 7 0 109.79 9.79z"></path>
+    </svg>
+
+    <script is:inline>
+        function initThemeToggle() {
+            const toggleBtn = document.getElementById("theme-toggle");
+            const sun = document.getElementById("icon-sun");
+            const moon = document.getElementById("icon-moon");
+
+            if (!toggleBtn || !sun || !moon) return;
+
+            const applyTheme = (dark) => {
+                document.documentElement.classList.toggle("dark", dark);
+                localStorage.theme = dark ? "dark" : "light";
+                sun.classList.toggle("hidden", dark);
+                moon.classList.toggle("hidden", !dark);
+            };
+
+            toggleBtn.addEventListener("click", () => {
+                const isDark =
+                    document.documentElement.classList.contains("dark");
+                toggleBtn.classList.add("rotate-[360deg]");
+                setTimeout(
+                    () => toggleBtn.classList.remove("rotate-[360deg]"),
+                    300,
+                );
+                applyTheme(!isDark);
+            });
+
+            const saved = localStorage.theme;
+            const prefersDark = window.matchMedia(
+                "(prefers-color-scheme: dark)",
+            ).matches;
+            applyTheme(saved === "dark" || (!saved && prefersDark));
+        }
+
+        initThemeToggle();
+
+        // RE-EJECUTA TRAS CADA NAVEGACIÓN SPA
+        document.addEventListener("astro:after-swap", () => {
+            initThemeToggle();
+        });
+    </script>
+</button>
